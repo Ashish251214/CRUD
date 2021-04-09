@@ -23,11 +23,6 @@ crossBtn.addEventListener('click', () => {
     addRecordForm.style.display = "none";
     document.body.style.backgroundColor = '#fff';
 });
-document.body.onclick(() => {
-    if(addRecordForm.style.display = "block"){
-        addRecordForm.style.display = "none";
-    }
-});
 // Add Data From Form
 addData.addEventListener('click',() => {
     // getting value of gender

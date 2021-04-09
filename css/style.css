@@ -6,3 +6,27 @@
 table{
     overflow: auto;
 }
+.container-fluid{
+    position: relative;
+}
+.addRecordForm{
+    width: 60%;
+    background-color: #f2f2f2;
+    display: block;
+    margin: 0 auto;
+    padding: 5rem;
+    border-radius: 10px;
+    box-shadow: 4px 3px 41px -6px #00000052;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.relativeClass{
+    position: relative;
+}
+.crossBtn{
+    position: absolute;
+    top: -60px;
+    right: -60px;
+}

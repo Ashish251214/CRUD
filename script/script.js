@@ -12,11 +12,21 @@ addData = document.querySelector("#addData"),
 resetData = document.querySelector("#resetData"),
 firstPage = document.querySelector(".firstPage"),
 addRecordForm = document.querySelector(".addRecordForm"),getGender,
-err = document.getElementsByClassName("err"),mainArray = [],finalArray=[];
+err = document.getElementsByClassName("err"),mainArray = [],finalArray=[],
+crossBtn = document.querySelector(".crossBtn");
 // Add Record page
 addRecord.addEventListener('click', () => {
-    firstPage.style.display = "none";
-    addRecordForm.style.display = "block"
+    addRecordForm.style.display = "block";
+    document.body.style.backgroundColor = '#00000045';
+});
+crossBtn.addEventListener('click', () => {
+    addRecordForm.style.display = "none";
+    document.body.style.backgroundColor = '#fff';
+});
+document.body.onclick(() => {
+    if(addRecordForm.style.display = "block"){
+        addRecordForm.style.display = "none";
+    }
 });
 // Add Data From Form
 addData.addEventListener('click',() => {
@@ -56,8 +66,6 @@ addData.addEventListener('click',() => {
         });
         firstName.value=lastName.value=superHero.value=emailInput.value=age.value="";
         showDataFun();
-        firstPage.style.display = "block";
-        addRecordForm.style.display = "none"
     }else{
         err[5].innerHTML = "Please Enter in between 1 to 100";
     }

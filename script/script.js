@@ -14,6 +14,7 @@ firstPage = document.querySelector(".firstPage"),
 addRecordForm = document.querySelector(".addRecordForm"),getGender,
 err = document.getElementsByClassName("err"),mainArray = [],finalArray=[],
 crossBtn = document.querySelector(".crossBtn");
+const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 // Add Record page
 addRecord.addEventListener('click', () => {
     addRecordForm.style.display = "block";
@@ -31,17 +32,27 @@ addData.addEventListener('click',() => {
             getGender = radio.value;
         }
     });
-    if(firstName.value == "" || firstName.value == null){
-        err[0].innerHTML = "Please Enter Firstname";
-    }else if(lastName.value == "" || lastName.value == null){
+    if(firstName.value.trim().length == 0){
+        err[0].innerHTML = "Please enter name without spaces";
+    }else if(isNaN(firstName.value) == false){
+        err[0].innerHTML = "Please enter only string";
+    }else if(lastName.value.trim().length == 0){
         err[0].innerHTML = "";
-        err[1].innerHTML = "Please Enter Lastname";
-    }else if(superHero.value == "" || superHero.value == null){
+        err[1].innerHTML = "Please enter lastname without spaces";
+    }else if(isNaN(lastName.value) == false){
+        err[1].innerHTML = "Please enter only string";
+    }else if(superHero.value.trim().length == 0){
         err[1].innerHTML = "";
-        err[2].innerHTML = "Please Enter You'r Superhero";
-    }else if(emailInput.value == "" || emailInput.value == null){
+        err[2].innerHTML = "Please enter without spaces";
+    }else if(isNaN(superHero.value) == false){
+        err[2].innerHTML = "Please enter only string";
+    }else if(pattern.test(emailInput.value.trim()) == false){
         err[2].innerHTML = "";
-        err[3].innerHTML = "Please Enter You'r Email";
+        if(emailInput.value.trim().length == 0){
+            err[3].innerHTML = "Please enter email without spaces";
+        }else{
+            err[3].innerHTML = "Please enter an valid email";
+        }
     }else if(getGender == "" || getGender == null){
         err[3].innerHTML = "";
         err[4].innerHTML = "Please Select Gender";
@@ -49,6 +60,7 @@ addData.addEventListener('click',() => {
         err[4].innerHTML = "";
         err[5].innerHTML = "Please Enter Age";
     }else if(age.value >=1 && age.value <= 100){
+        err[0].innerHTML=err[1].innerHTML=err[2].innerHTML=err[3].innerHTML=err[4].innerHTML=err[5].innerHTML="";
         err[5].innerHTML = "";
         let getObject = makeObj(firstName.value,lastName.value,superHero.value,emailInput.value,getGender,age.value);
         getLocalStorage();

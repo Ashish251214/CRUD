@@ -73,6 +73,8 @@ addData.addEventListener('click',() => {
             radio.checked = false;
         });
         firstName.value=lastName.value=superHero.value=emailInput.value=age.value="";
+        addRecordForm.style.display = "none";
+        document.body.style.backgroundColor = '#fff';
         showDataFun();
     }else{
         err[5].innerHTML = "Please Enter in between 1 to 100";
@@ -120,10 +122,16 @@ searchInput.addEventListener('keyup', () => {
     let lower = tag.toLowerCase();
     let tRows = showData.getElementsByTagName("tr");
     for(let i=0;i<tRows.length;i++){
-        let tData = tRows[i].getElementsByTagName("td")[2];
-        if(tData){
-            let tDataTxt = tData.innerText;
-            if(tDataTxt.toLowerCase().indexOf(lower) >- 1){
+        let tData1 = tRows[i].getElementsByTagName("td")[2];
+        let tData2 = tRows[i].getElementsByTagName("td")[3];
+        let tData3 = tRows[i].getElementsByTagName("td")[4];
+        let tData4 = tRows[i].getElementsByTagName("td")[5];
+        if(tData1 || tData2 || tData3 || tData4){
+            let tDataTxt1 = tData1.innerText;
+            let tDataTxt2 = tData2.innerText;
+            let tDataTxt3 = tData3.innerText;
+            let tDataTxt4 = tData4.innerText;
+            if(tDataTxt1.toLowerCase().indexOf(lower) >- 1 || tDataTxt2.toLowerCase().indexOf(lower) >- 1 || tDataTxt3.toLowerCase().indexOf(lower) >- 1 || tDataTxt4.toLowerCase().indexOf(lower) >- 1){
                 tRows[i].style.display = "";
             }else{
                 tRows[i].style.display = "none";
@@ -149,7 +157,7 @@ dltRecord.addEventListener('click', () => {
     blankArray.splice(0,blankArray.length);
 });
 // sorting
-checkIndex = 0
+checkIndex = 0;
 sortFun.addEventListener('click',() => {
     console.log(checkIndex);
     if(checkIndex==0){

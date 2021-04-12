@@ -159,7 +159,6 @@ dltRecord.addEventListener('click', () => {
 // sorting
 checkIndex = 0;
 sortFun.addEventListener('click',() => {
-    console.log(checkIndex);
     if(checkIndex==0){
         getLocalStorage();
         let sortedArray = [],sortedArrayFinal = [];

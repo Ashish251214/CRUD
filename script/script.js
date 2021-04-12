@@ -13,7 +13,8 @@ resetData = document.querySelector("#resetData"),
 firstPage = document.querySelector(".firstPage"),
 addRecordForm = document.querySelector(".addRecordForm"),getGender,
 err = document.getElementsByClassName("err"),mainArray = [],finalArray=[],
-crossBtn = document.querySelector(".crossBtn");
+crossBtn = document.querySelector(".crossBtn"),
+sortFun = document.querySelector(".sortFun"),checkIndex;
 const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 // Add Record page
 addRecord.addEventListener('click', () => {
@@ -146,4 +147,51 @@ dltRecord.addEventListener('click', () => {
     localStorage.setItem("crud",JSON.stringify(mainArray));
     showDataFun();
     blankArray.splice(0,blankArray.length);
+});
+// sorting
+checkIndex = 0
+sortFun.addEventListener('click',() => {
+    console.log(checkIndex);
+    if(checkIndex==0){
+        getLocalStorage();
+        let sortedArray = [],sortedArrayFinal = [];
+        for(let i=0;i<mainArray.length;i++){
+            sortedArray.push(mainArray[i].firstName);
+        }
+        sortedArray.sort();
+        for(let j=0;j<sortedArray.length;j++){
+            for(let k=0;k<mainArray.length;k++){
+                if(sortedArray[j] == mainArray[k].firstName){
+                    sortedArrayFinal.push(mainArray[k]);
+                }
+            }
+        }
+        // SHOwING DATA
+        localStorage.setItem("crud",JSON.stringify(sortedArrayFinal));
+        getLocalStorage();
+        showDataFun();
+        sortedArrayFinal.splice(0,sortedArrayFinal.length);
+        checkIndex = 1;
+    }else{
+        getLocalStorage();
+        let sortedArray = [],sortedArrayFinal = [];
+        for(let i=0;i<mainArray.length;i++){
+            sortedArray.push(mainArray[i].firstName);
+        }
+        sortedArray.sort();
+        sortedArray.reverse();
+        for(let j=0;j<sortedArray.length;j++){
+            for(let k=0;k<mainArray.length;k++){
+                if(sortedArray[j] == mainArray[k].firstName){
+                    sortedArrayFinal.push(mainArray[k]);
+                }
+            }
+        }
+        // SHOwING DATA
+        localStorage.setItem("crud",JSON.stringify(sortedArrayFinal));
+        getLocalStorage();
+        showDataFun();
+        sortedArrayFinal.splice(0,sortedArrayFinal.length);
+        checkIndex = 0;
+    }
 });
